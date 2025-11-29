@@ -10,11 +10,11 @@
 <div class="container">
     <header>
         <h1>Smart Task Analyzer</h1>
-        <p>Manage tasks, mark them as completed, and analyze what to work on first.</p>
+        <p>Manage tasks and analyze what to work on first.</p>
     </header>
 
     <main class="layout">
-        <!-- LEFT SIDE: INPUT + LOCAL TASK LISTS -->
+        <!-- LEFT SIDE: INPUT + TODO LIST -->
         <section class="panel">
             <h2>Add Task</h2>
             <form id="taskForm">
@@ -46,19 +46,8 @@
                 <button type="submit">Add Task</button>
             </form>
 
-            <h2>Current Task Data (raw JSON)</h2>
-            <pre id="taskListPreview" class="preview"></pre>
-
             <h2>Todo Tasks</h2>
             <ul id="todoList" class="task-list"></ul>
-
-            <h2>Completed Tasks</h2>
-            <ul id="completedList" class="task-list completed"></ul>
-
-            <h2>Bulk JSON Input</h2>
-            <textarea id="taskInput" rows="6"
-                      placeholder='[{"title": "Task A", "due_date": "2025-12-01", "estimated_hours": 2, "importance": 7, "dependencies": []}]'></textarea>
-            <button id="loadJsonBtn">Load JSON into Task List</button>
         </section>
 
         <!-- RIGHT SIDE: ANALYSIS RESULTS -->
