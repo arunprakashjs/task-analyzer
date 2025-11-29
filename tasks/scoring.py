@@ -5,15 +5,21 @@ DEFAULT_ESTIMATED_HOURS = 1
 
 
 def parse_due_date(value):
-    """Accepts string (YYYY-MM-DD) or date, returns date or None."""
+    """Accepts string (YYYY-MM-DD) or date, returns date or None.
+       Past dates are treated as None to enforce 'future only' rule."""
     if isinstance(value, date):
-        return value
-    if not value:
+        d = value
+    elif not value:
         return None
-    try:
-        return datetime.strptime(value, "%Y-%m-%d").date()
-    except (ValueError, TypeError):
+    else:
+        try:
+            d = datetime.strptime(value, "%Y-%m-%d").date()
+        except (ValueError, TypeError):
+            return None
+
+    if d < date.today():
         return None
+    return d
 
 
 def normalize_task(task_dict, generated_id):

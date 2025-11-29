@@ -10,51 +10,58 @@
 <div class="container">
     <header>
         <h1>Smart Task Analyzer</h1>
-        <p>Paste tasks or use the form, choose a strategy, and let the app prioritize your work.</p>
+        <p>Manage tasks, mark them as completed, and analyze what to work on first.</p>
     </header>
 
     <main class="layout">
-        <!-- LEFT SIDE: INPUT -->
+        <!-- LEFT SIDE: INPUT + LOCAL TASK LISTS -->
         <section class="panel">
-            <h2>Add Task (Form)</h2>
+            <h2>Add Task</h2>
             <form id="taskForm">
                 <label>
                     Title
-                    <input type="text" id="title" required>
+                    <input type="text" id="title" required />
                 </label>
 
                 <label>
-                    Due Date (YYYY-MM-DD)
-                    <input type="date" id="due_date">
+                    Due Date (cannot be in the past)
+                    <input type="date" id="due_date" />
                 </label>
 
                 <label>
                     Estimated Hours
-                    <input type="number" id="estimated_hours" min="1" value="1">
+                    <input type="number" id="estimated_hours" min="1" value="1" />
                 </label>
 
                 <label>
                     Importance (1-10)
-                    <input type="number" id="importance" min="1" max="10" value="5">
+                    <input type="number" id="importance" min="1" max="10" value="5" />
                 </label>
 
                 <label>
                     Dependencies (IDs, comma separated)
-                    <input type="text" id="dependencies" placeholder="e.g. 1,2,3">
+                    <input type="text" id="dependencies" placeholder="e.g. 1,2,3" />
                 </label>
 
                 <button type="submit">Add Task</button>
             </form>
 
-            <h2>Current Task List</h2>
+            <h2>Current Task Data (raw JSON)</h2>
             <pre id="taskListPreview" class="preview"></pre>
 
+            <h2>Todo Tasks</h2>
+            <ul id="todoList" class="task-list"></ul>
+
+            <h2>Completed Tasks</h2>
+            <ul id="completedList" class="task-list completed"></ul>
+
             <h2>Bulk JSON Input</h2>
-            <textarea id="taskInput" rows="6" placeholder='[{"title": "...", "due_date": "2025-11-30", ...}]'></textarea>
+            <textarea id="taskInput" rows="6"
+                      placeholder='[{"title": "Task A", "due_date": "2025-12-01", "estimated_hours": 2, "importance": 7, "dependencies": []}]'></textarea>
             <button id="loadJsonBtn">Load JSON into Task List</button>
         </section>
 
-        <!-- RIGHT SIDE: RESULTS -->
+        <!-- RIGHT SIDE: ANALYSIS RESULTS -->
         <section class="panel">
             <h2>Analyze Tasks</h2>
             <div class="controls">
@@ -67,7 +74,7 @@
                         <option value="deadline_driven">Deadline Driven</option>
                     </select>
                 </label>
-                <button id="analyzeBtn">Analyze</button>
+                <button id="analyzeBtn">Analyze All Todo Tasks</button>
                 <button id="suggestBtn">Suggest Top 3</button>
             </div>
 
