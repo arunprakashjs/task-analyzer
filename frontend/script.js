@@ -172,7 +172,6 @@ document.getElementById('taskForm').addEventListener('submit', (e) => {
     saveToStorage();
     renderTaskLists();
 
-    // Clear some fields
     document.getElementById('title').value = '';
     document.getElementById('dependencies').value = '';
 });
@@ -220,12 +219,9 @@ document.getElementById('suggestBtn').addEventListener('click', () => {
     callApi('suggest');
 });
 
-/* ---------- Initialization ---------- */
-
 loadFromStorage();
 renderTaskLists();
 
-// Set minimum date to today so past dates can't be picked
 const dueDateInput = document.getElementById('due_date');
 if (dueDateInput) {
     const todayStr = new Date().toISOString().split('T')[0];
